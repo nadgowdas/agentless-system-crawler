@@ -12,15 +12,17 @@ spec:
       labels:
         name: crawler
     spec:
-      hostPID: true
-      hostIPC: true
+      hostPID: false
+      hostIPC: false
       hostNetwork: true
       containers:
         - resources:
             requests:
-              cpu: 0.15
+              cpu: 0.05
           securityContext:
-            privileged: true
+            privileged: false
+            runAsUser: 2000
+            allowPrivilegeEscalation: false  
           # crawler image path from image registry 
           image: cloudviz/agentless-system-crawler
           name: crawler
